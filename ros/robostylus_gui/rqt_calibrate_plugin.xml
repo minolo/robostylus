@@ -1,0 +1,17 @@
+<library path="src">
+  <class name="Robostylus Calibrate Plugin" type="rqt_calibrate.rqt_calibrate.RQT_Calibrate" base_class_type="rqt_gui_py::Plugin">
+    <description>
+      An rqt plugin to calibrate the Robostylus camera.
+    </description>
+    <qtgui>
+      <group>
+        <label>Robostylus</label>
+        <icon type="theme">folder</icon>
+        <statustip>Plugins related to the Robostylus project</statustip>
+      </group>
+      <label>Calibrate</label>
+      <icon type="theme">wmtweaks</icon>
+      <statustip>Calibrate plugin</statustip>
+    </qtgui>
+  </class>
+</library>

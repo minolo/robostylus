@@ -1,0 +1,8 @@
+<launch>
+    <rosparam>
+        device              : "/dev/ttyUSB0"
+        tip_link_name       : "end_effector"
+        zeroes              : [28623, 31647, 25169, 27035]
+        deg90               : [18744, 18744, -18744, 18744]
+    </rosparam>
+</launch>

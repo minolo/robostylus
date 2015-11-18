@@ -1,0 +1,20 @@
+image_width: 1280
+image_height: 720
+camera_name: robostylus_camera
+camera_matrix:
+  rows: 3
+  cols: 3
+  data: [1404.297091, 0.000000, 646.040857, 0.000000, 1408.082388, 398.450824, 0.000000, 0.000000, 1.000000]
+distortion_model: plumb_bob
+distortion_coefficients:
+  rows: 1
+  cols: 5
+  data: [0.054313, -0.055916, 0.005025, -0.000873, 0.000000]
+rectification_matrix:
+  rows: 3
+  cols: 3
+  data: [1, 0, 0, 0, 1, 0, 0, 0, 1]
+projection_matrix:
+  rows: 3
+  cols: 4
+  data: [1420.647705, 0.000000, 644.678868, 0.000000, 0.000000, 1420.978516, 400.566162, 0.000000, 0.000000, 0.000000, 1.000000, 0.000000]

@@ -1,0 +1,17 @@
+<library path="src">
+  <class name="Robostylus NDSView Plugin" type="rqt_ndsview.rqt_ndsview.RQT_NDSView" base_class_type="rqt_gui_py::Plugin">
+    <description>
+      An rqt plugin to view the Nintendo DS screens and control the bottom one using Robostylus.
+    </description>
+    <qtgui>
+      <group>
+        <label>Robostylus</label>
+        <icon type="theme">folder</icon>
+        <statustip>Plugins related to the Robostylus project</statustip>
+      </group>
+      <label>NDS View</label>
+      <icon type="theme">xfwm4</icon>
+      <statustip>NDS View plugin</statustip>
+    </qtgui>
+  </class>
+</library>

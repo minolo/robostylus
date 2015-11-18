@@ -1,0 +1,7 @@
+<library path="lib/libRobostylusCameraNodelet">
+  <class name="robostylus_camera/RobostylusCameraNodelet" type="robostylus_camera::RobostylusCameraNodelet" base_class_type="nodelet::Nodelet">
+    <description>
+      Nodelet that splits the screens from the camera output.
+    </description>
+  </class>
+</library>

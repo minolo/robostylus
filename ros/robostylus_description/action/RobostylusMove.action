@@ -1,0 +1,12 @@
+# Define the goal
+geometry_msgs/Point32 position
+std_msgs/Int32 ticks
+std_msgs/Float32 pressure_limit
+
+---
+# Define the result
+std_msgs/Int32 ticks_taken
+
+---
+# Define a feedback message
+std_msgs/Empty feedback

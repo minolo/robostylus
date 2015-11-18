@@ -1,0 +1,10 @@
+firmware/.project
+firmware/.cproject
+firmware/.settings
+firmware/Debug
+firmware/Release
+
+ros/CMakeLists.txt
+ros/robostylus_games/src/mario_puzzle/inaccurate/*
+
+*.pyc

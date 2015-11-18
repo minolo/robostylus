@@ -1,0 +1,48 @@
+<launch>
+  <arg name="cam_name" value="robostylus_camera"/>
+  <arg name="cam_device" value="/dev/video1"/>
+
+  <group ns="$(arg cam_name)">
+    <node pkg="nodelet" type="nodelet" name="standalone_nodelet" args="manager">
+
+    </node>
+
+    <node pkg="nodelet" type="nodelet" name="gscam_nodelet" args="load gscam/GSCamNodelet standalone_nodelet">
+      <param name="gscam_config" value="v4l2src device=$(arg cam_device) ! videorate ! video/x-raw-rgb,framerate=5/1,width=1280,height=720 ! ffmpegcolorspace" />
+      <param name="camera_name" value="$(arg cam_name)" />
+      <param name="camera_info_url" value="package://robostylus_camera/calibrations/calibration_720.yaml" />
+      <param name="frame_id" value="camera"/>
+      <remap from="camera/image_raw" to="image_raw" />
+    </node>
+
+    <node pkg="nodelet" type="nodelet" name="rectify_nodelet" args="load image_proc/rectify standalone_nodelet">
+      <remap from="image_mono" to="image_raw" />
+    </node>
+
+    <node pkg="nodelet" type="nodelet" name="RobostylusCameraNodelet" args="load robostylus_camera/RobostylusCameraNodelet standalone_nodelet">
+
+    </node>
+
+  </group>
+
+  <node pkg="robostylus_camera" type="CalibrationDataReader.py" name="CalibrationDataReader">
+    <param name="filename" value="$(find robostylus_camera)/calibrations/screen_calibration_1.json" />
+    <param name="operation" value="load" />
+    <remap from="transfer_data" to="robostylus_camera/transfer_data" />
+  </node>
+
+<!--
+  <group ns="view">
+    <node pkg="image_view" type="image_view" name="robostylus_view_rect" >
+      <remap from="image" to="/$(arg cam_name)/image_rect" />
+    </node>
+    <node pkg="image_view" type="image_view" name="top_screen_view" >
+      <remap from="image" to="/$(arg cam_name)/top_screen" />
+    </node>
+    <node pkg="image_view" type="image_view" name="bottom_screen_view" >
+      <remap from="image" to="/$(arg cam_name)/bottom_screen" />
+    </node>
+  </group>
+-->
+
+</launch>

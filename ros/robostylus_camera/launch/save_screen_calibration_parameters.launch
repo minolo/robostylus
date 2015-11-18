@@ -1,0 +1,7 @@
+<launch>
+    <node pkg="robostylus_camera" type="CalibrationDataReader.py" name="CalibrationDataReader">
+        <param name="filename" value="$(find robostylus_camera)/calibrations/screen_calibration_1.json" />
+        <param name="operation" value="save" />
+        <remap from="transfer_data" to="robostylus_camera/transfer_data" />
+    </node>
+</launch>

@@ -1,0 +1,144 @@
+<robot name = "robostylus" xmlns:xacro = "http://www.ros.org/wiki/xacro">
+    <!-- All distance values in dm -->
+
+    <link name="base">
+        <visual>
+            <geometry>
+                <box size="0.4 0.42 0.2"/>
+            </geometry>
+            <origin xyz="0 0 0.1" rpy="0 0 0"/>
+            <material name="gray">
+                <color rgba = "0.4 0.4 0.4 1"/>
+            </material>
+        </visual>
+    </link>
+
+    <joint name = "base_to_shoulder" type = "revolute">
+		<parent link = "base"/>
+		<child link = "shoulder"/>
+
+		<origin xyz = "${(0.4/2)-0.13} 0 0.2" rpy = "0 0 0"/>
+		<axis xyz = "0 0 1"/>
+
+		<limit lower = "${-pi/3}" upper = "${pi/3}" effort = "1.0" velocity = "1.0"/>
+	</joint>
+
+    <link name="shoulder">
+        <visual>
+            <geometry>
+                <box size="0.4 0.2 0.3455"/>
+            </geometry>
+            <origin xyz="${-((0.4/2)-0.13)} 0 ${0.35/2}" rpy="0 0 0"/>
+            <material name="red">
+                <color rgba = "0.8 0 0 1"/>
+            </material>
+        </visual>
+    </link>
+
+    <joint name = "shoulder_to_arm" type = "revolute">
+		<parent link = "shoulder"/>
+		<child link = "arm"/>
+
+		<origin xyz = "0 0 0.24" rpy = "0 0 0"/>
+		<axis xyz = "0 1 0"/>
+
+		<limit lower = "${-pi/3}" upper = "${pi/3}" effort = "1.0" velocity = "1.0"/>
+	</joint>
+
+    <link name="arm">
+        <visual>
+            <geometry>
+                <box size="0.2 0.348 0.9"/>
+            </geometry>
+            <origin xyz="0 0 ${(0.9/2)-0.1}" rpy="0 0 0"/>
+            <material name="green">
+                <color rgba = "0 0.8 0 1"/>
+            </material>
+        </visual>
+    </link>
+
+    <joint name = "arm_to_forearm" type = "revolute">
+		<parent link = "arm"/>
+		<child link = "forearm"/>
+
+		<origin xyz = "0 0 0.71" rpy = "0 0 0"/>
+		<axis xyz = "0 1 0"/>
+
+		<limit lower = "${-pi/3}" upper = "${pi/3}" effort = "1.0" velocity = "1.0"/>
+	</joint>
+
+    <link name="forearm">
+        <visual>
+            <geometry>
+                <box size="0.94 0.22 0.17"/>
+            </geometry>
+            <origin xyz="${(0.94/2)-0.24} 0 ${(0.17/2)-0.06}" rpy="0 0 0"/>
+            <material name="blue">
+                <color rgba = "0 0 0.8 1"/>
+            </material>
+        </visual>
+    </link>
+
+    <joint name = "forearm_to_wrist" type = "revolute">
+		<parent link = "forearm"/>
+		<child link = "wrist"/>
+
+		<origin xyz = "0.6 0 0" rpy = "0 0 0"/>
+		<axis xyz = "0 1 0"/>
+
+		<limit lower = "${-pi/3}" upper = "${pi/3}" effort = "1.0" velocity = "1.0"/>
+	</joint>
+
+    <link name="wrist">
+        <visual>
+            <geometry>
+                <box size="0.5 0.32 0.326"/>
+            </geometry>
+            <origin xyz="${(0.5/2)-0.1} 0 ${(0.326/2)-0.1}" rpy="0 0 0"/>
+            <material name="yellow">
+                <color rgba = "0.8 0.8 0 1"/>
+            </material>
+        </visual>
+    </link>
+
+    <joint name = "wrist_to_end_effector" type = "fixed">
+		<parent link = "wrist"/>
+		<child link = "end_effector"/>
+
+		<origin xyz = "0.3 0 -0.917" rpy = "0 0 0"/>
+	</joint>
+
+    <link name="end_effector">
+        <visual>
+            <geometry>
+                <cylinder radius="0.05" length="0.917"/>
+            </geometry>
+            <origin xyz="0 0 ${0.917/2}" rpy="0 0 0"/>
+            <material name="white">
+                <color rgba = "0.8 0.8 0.8 1"/>
+            </material>
+        </visual>
+    </link>
+
+    <link name="camera">
+        <visual>
+            <geometry>
+                <sphere radius="0.05"/>
+            </geometry>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <material name="orange">
+                <color rgba = "1 0.364705882 0 1"/>
+            </material>
+        </visual>
+    </link>
+
+    <joint name = "base_to_camera" type = "fixed">
+		<parent link = "base"/>
+		<child link = "camera"/>
+		
+		<origin xyz = "0.95 -0.33 1.77" rpy = "${pi-0.060396603154698816} ${-0.034311527493172685} ${pi/2+0.04713616327836247}"/>
+	</joint>
+
+    <xacro:property name = "pi" value = "3.1415926535897931"/>
+
+</robot>

@@ -1,0 +1,6 @@
+std_msgs/UInt8 target_hue
+std_msgs/Float32 mult_diffs
+std_msgs/Float32 mult_sat
+---
+std_msgs/Bool success
+sensor_msgs/Image image_debug

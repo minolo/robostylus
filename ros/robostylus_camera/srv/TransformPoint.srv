@@ -1,0 +1,8 @@
+uint32 x
+uint32 y
+---
+bool success
+string camera_frame
+float64 x
+float64 y
+float64 z

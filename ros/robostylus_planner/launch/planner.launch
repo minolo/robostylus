@@ -1,0 +1,24 @@
+<launch>
+    <param name="/robot_description" command="$(find xacro)/xacro.py '$(find robostylus_description)/urdf/robostylus.urdf.xacro'" />
+    
+    <node pkg="robot_state_publisher" type="robot_state_publisher" name="robostylus_state_publisher">
+        <remap from="joint_states" to="/robostylus_driver/joints"/>
+    </node>
+
+    <node pkg="robostylus_planner" type="robostylus_planner" name="robostylus_planner">
+        <remap from="~/joints" to="/robostylus_driver/joints" />
+    </node>
+
+    <node pkg="robostylus_description" type="robostylus_pressure_marker" name="robostylus_pressure_marker">
+
+    </node>
+
+    <include file="$(find robostylus_description)/config/robostylus_driver_parameters.xml" ns="robostylus_driver"/>
+    <node pkg="robostylus_description" type="robostylus_driver" name="robostylus_driver">
+        
+    </node>
+
+    <node pkg="rviz" type="rviz" name="rviz" args="-d $(find robostylus_description)/config/robostylus.rviz" />
+    <node pkg="rqt_console" type="rqt_console" name="rqt_console" /><!---->
+    
+</launch>
